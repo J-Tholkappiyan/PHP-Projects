@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>4-Inch Thermal Bill</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12px;
+    }
+
+    #bill {
+      width: 288px; /* 4 inches */
+      margin: auto;
+      padding: 5px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 5px;
+    }
+
+    th, td {
+      padding: 1px 1px;
+      font-size: 10px;
+    }
+
+    th {
+      text-align: left;
+    }
+
+    td:nth-child(2),
+    td:nth-child(3),
+    td:nth-child(4) {
+      text-align: left;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px dashed black;
+      margin: 5px 0;
+    }
+
+    .total {
+      text-align: right;
+      font-weight: bold;
+      margin-top: 5px;
+      margin-right: 20px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="bill">
+  <div class="center">
+    <h3 style="margin: 0;">My Store</h3>
+    <p style="margin: 0;">123 Market St, City<br>Ph: 9876543210</p>
+  </div>
+
+  <p>Bill No: 1001<br>Date: <span id="date"></span></p>
+  <hr>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Qty</th>
+        <th>Rate</th>
+        <th>Amt</th>
+      </tr>
+    </thead>
+    <tbody id="items">
+      <tr><td>Apple</td><td>2</td><td>30</td><td>60</td></tr>
+      <tr><td>Banana</td><td>5</td><td>10</td><td>50</td></tr>
+      <tr><td>Apple</td><td>2</td><td>30</td><td>60</td></tr>
+        <tr><td>Apple</td><td>2</td><td>30</td><td>60</td></tr>
+      <tr><td>Banana</td><td>5</td><td>10</td><td>50</td></tr>
+      <tr><td>Apple</td><td>2</td><td>30</td><td>60</td></tr>
+        <tr><td>Apple</td><td>2</td><td>30</td><td>60</td></tr>
+      <tr><td>Banana</td><td>5</td><td>10</td><td>50</td></tr>
+      <tr><td>Apple</td><td>2</td><td>30</td><td>60</td></tr>
+      <tr><td>Banana</td><td>5</td><td>10</td><td>50</td></tr>
+    
+      <tr><td>Apple</td><td>2</td><td>30</td><td>60</td></tr>
+        <tr><td>Apple</td><td>2</td><td>30</td><td>60</td></tr>
+      <tr><td>Banana</td><td>5</td><td>10</td><td>50</td></tr>
+      <tr><td>Apple</td><td>2</td><td>30</td><td>60</td></tr>
+     
+    </tbody>
+  </table>
+
+  <hr>
+  <p class="total">Grand Total: Rs. 170</p>
+
+  <div class="footer">
+    <p>*** Thank You! Visit Again ***</p>
+  </div>
+</div>
+
+<div style="text-align:center; margin-top:10px;">
+  <button onclick="savePDF()">Save to PDF</button>
+</div>
+
+<script>
+  document.getElementById('date').innerText = new Date().toLocaleDateString();
+
+  function savePDF() {
+    const element = document.getElementById('bill');
+    const opt = {
+      margin: 0,
+      filename: 'thermal-bill.pdf',
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: {
+        unit: 'px',
+        format: [288, element.scrollHeight + 20],
+        orientation: 'portrait'
+      }
+    };
+    html2pdf().set(opt).from(element).save();
+  }
+</script>
+
+</body>
+</html>

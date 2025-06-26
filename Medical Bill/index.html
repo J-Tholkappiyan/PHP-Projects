@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select Bill</title>
+</head>
+<body>
+  <div class="controls" style="margin-bottom: 10px;">
+    <label for="companySelect"><b>Select Company:</b></label>
+    <select id="companySelect"></select>
+
+    <label for="billSelect"><b>Select Bill:</b></label>
+    <select id="billSelect"></select>
+
+    <button onclick="window.location.href='./generate_bill.html?ino=' + billSelect.value + '&company=' + companySelect.value">Generate Bill</button>
+  </div>
+
+  <script>
+   let companies = [];
+let sales = [];
+
+async function loadAllData() {
+  [companies, sales] = await Promise.all([
+    fetch('company.json').then(res => res.json()),
+    fetch('sales.json').then(res => res.json())
+  ]);
+
+  const companySelect = document.getElementById('companySelect');
+  const billSelect = document.getElementById('billSelect');
+
+  // Load companies into dropdown
+  companySelect.innerHTML = '';
+  companies.forEach(c => {
+    const option = document.createElement('option');
+    option.value = c.id;
+    option.textContent = c.cname.split(',')[0];
+    companySelect.appendChild(option);
+  });
+
+  // ✅ Load all unique bill numbers from all active sales (not filtered by company)
+  const activeSales = sales.filter(s => s.status === 'a');
+  const uniqueBillNumbers = [...new Set(activeSales.map(s => s.no))];
+
+  billSelect.innerHTML = '';
+  uniqueBillNumbers.forEach(billNo => {
+    const option = document.createElement('option');
+    option.value = billNo;
+    option.textContent = billNo;
+    billSelect.appendChild(option);
+  });
+
+  // Optional: select first company and first bill
+  if (companies.length > 0) companySelect.value = companies[0].id;
+  if (uniqueBillNumbers.length > 0) billSelect.value = uniqueBillNumbers[0];
+}
+
+loadAllData();
+
+  </script>
+</body>
+</html>

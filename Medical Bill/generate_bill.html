@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prescription Bill</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="controls" style="margin-bottom: 10px;">
+    <!-- <label for="companySelect"><b>Select Company:</b></label>
+    <select id="companySelect"></select>
+    <label for="billSelect"><b>Select Bill:</b></label>
+    <select id="billSelect"></select> -->
+    <button onclick="window.print()">🖨️ Print</button>
+  </div>
+
+  <div class="bill-container">
+    <div class="center bold">
+      <div id="pharmacyName">[Pharmacy Name]</div>
+      <div id="clinicName">[Clinic Name]</div>
+      <div id="addressLine">[Address]</div>
+      <div id="contactLine">[Contact]</div>
+      <div id="gstLine">[DL No & GST]</div>
+      <div><b><u>Cash Bill</u></b></div>
+    </div>
+
+    <div class="bill-details">
+      <div><b>BILL NO.:</b> <span id="billNo"></span></div>
+      <div><b>M/s:</b> <span id="billMs"></span></div>
+    </div>
+
+    <div class="bill-details" style="margin-top: 5px;">
+      <div><b>BILL DATE:</b> <span id="billDate"></span></div>
+      <div> <i>(Doctor Name)</i>: <span id="doctorName"></span></div>
+    </div>
+
+    <div class="dashed"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>SNO</th>
+          <th>PARTICULAR</th>
+          <th>Batch</th>
+          <th>Exp</th>
+          <th>QTY</th>
+          <th>Rate</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody id="itemRows"></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6" style="text-align:right;">TOTAL</td>
+          <td id="totalAmt">0.00</td>
+        </tr>
+        <tr>
+          <td colspan="6" style="text-align:right;">NET AMOUNT</td>
+          <td id="netAmt">0.00</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

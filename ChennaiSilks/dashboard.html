@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.8em;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 15px;
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .dashboard-header h2 {
+            margin: 0;
+            color: #555;
+            font-size: 1.8em;
+        }
+        .dashboard-header .add-new-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .dashboard-header .add-new-btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .product-card {
+            background-color: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 180px;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .product-card h3 {
+            color: #0056b3;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+        .product-card p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #d9534f; /* Reddish color for price */
+            font-size: 1.2em;
+        }
+        .product-card .view-link {
+            display: inline-block;
+            margin-top: 15px;
+            background-color: #007bff;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9em;
+            text-align: center;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .product-card .view-link:hover {
+            background-color: #0056b3;
+        }
+        .no-products-message {
+            text-align: center;
+            color: #777;
+            padding: 50px 0;
+            font-size: 1.2em;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px dashed #e9ecef;
+        }
+        .loading-message {
+            text-align: center;
+            color: #007bff;
+            padding: 50px 0;
+            font-size: 1.2em;
+        }
+        .error-message {
+            text-align: center;
+            color: #dc3545;
+            padding: 50px 0;
+            font-size: 1.2em;
+            background-color: #ffe0e0;
+            border-radius: 8px;
+            border: 1px solid #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product Management Dashboard</h1>
+
+        <div class="dashboard-header">
+            <h2>Your Products</h2>
+            <a href="index.php" class="add-new-btn">+ Add New Product</a>
+        </div>
+
+        <div class="product-list" id="productList">
+            <p class="loading-message">Loading products...</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const productListDiv = document.getElementById('productList');
+
+            fetch('products.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(products => {
+                    productListDiv.innerHTML = ''; // Clear loading message
+
+                    if (products.length === 0) {
+                        productListDiv.innerHTML = '<p class="no-products-message">No products added yet. Click "Add New Product" to get started!</p>';
+                        return;
+                    }
+
+                    products.forEach(product => {
+                        const productCard = document.createElement('div');
+                        productCard.classList.add('product-card');
+
+                        // Construct image path for display (assuming product_html and product_images are siblings)
+                        // If there's at least one image, use the first one
+                        const imageUrl = product.images && product.images.length > 0 ?
+                                        '../' + product.images[0] :
+                                        'https://via.placeholder.com/150?text=No+Image'; // Placeholder if no image
+
+                        productCard.innerHTML = `
+                            <h3>${product.productName}</h3>
+                            <p><strong>ID:</strong> ${product.productId}</p>
+                            <p class="price"><strong>Price:</strong> Rs. ${parseFloat(product.price).toLocaleString('en-IN', {minimumFractionDigits: 2})}</p>
+                            ${product.images.length > 0 ? `<img src="${imageUrl}" alt="${product.productName}" style="max-width: 100%; height: 100px; object-fit: contain; margin-top: 10px; border-radius: 5px;">` : ''}
+                            <a href="product_html/${product.productId}.html" class="view-link" target="_blank">View Details</a>
+                        `;
+                        productListDiv.appendChild(productCard);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching products:', error);
+                    productListDiv.innerHTML = '<p class="error-message">Error loading products. Please ensure products.json exists and is valid.</p>';
+                });
+        });
+    </script>
+</body>
+</html>

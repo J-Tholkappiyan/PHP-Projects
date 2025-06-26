@@ -1,0 +1,24 @@
+[
+    {
+        "productId": 1750916353,
+        "productName": "Pooja",
+        "price": 876786,
+        "description": "787676",
+        "images": [
+            "product_images\/img_685cdd01b6d5f8.46927677.png",
+            "product_images\/img_685cdd01b6fd15.07629327.jpg",
+            "product_images\/img_685cdd01b735a2.73849336.jpg"
+        ]
+    },
+    {
+        "productId": 1750916661,
+        "productName": "HP13506",
+        "price": 23432432,
+        "description": "jhgjkg",
+        "images": [
+            "product_images\/img_685cde35886d87.92939301.png",
+            "product_images\/img_685cde35889aa0.52055310.jpg",
+            "product_images\/img_685cde3588cb26.49958170.jpg"
+        ]
+    }
+]

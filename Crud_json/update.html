@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Update User</title></head>
+<body>
+<h2>Update User</h2>
+<form method="POST" action="update.php" enctype="multipart/form-data">
+    <label>User ID to Update:</label><br>
+    <input type="text" name="id" required><br><br>
+    <label>New Name:</label><br>
+    <input type="text" name="name" required><br><br>
+    <label>New Email:</label><br>
+    <input type="email" name="email" required><br><br>
+    <label>New Photo (leave empty to keep current):</label><br>
+    <input type="file" name="photo" accept="image/*"><br><br>
+    <label>New Description:</label><br>
+    <textarea name="description" rows="4" cols="50"></textarea><br><br>
+    <input type="submit" value="Update">
+</form>
+</body>
+</html>

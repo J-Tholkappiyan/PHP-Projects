@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>Create User</title></head>
+<body>
+<h2>Create User</h2>
+<form method="POST" action="create.php" enctype="multipart/form-data">
+    <label>Name:</label><br>
+    <input type="text" name="name" required><br><br>
+    <label>Email:</label><br>
+    <input type="email" name="email" required><br><br>
+    <label>Photo:</label><br>
+    <input type="file" name="photo" accept="image/*"><br><br>
+    <label>Description:</label><br>
+    <textarea name="description" rows="4" cols="50"></textarea><br><br>
+    <input type="submit" value="Create">
+</form>
+</body>
+</html>

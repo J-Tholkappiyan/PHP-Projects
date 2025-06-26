@@ -1,0 +1,83 @@
+
+            <!DOCTYPE html>
+            <html lang='en'>
+            <head>
+                <meta charset='UTF-8'>
+                <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                <title>Product Details: Laptop</title>
+                <style>
+                    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 40px; background-color: #eef2f7; color: #333; }
+                    .product-container { background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); max-width: 900px; margin: 30px auto; display: flex; flex-wrap: wrap; gap: 30px; }
+                    .product-header { width: 100%; text-align: center; margin-bottom: 30px; color: #007bff; font-size: 2.5em; border-bottom: 2px solid #007bff; padding-bottom: 15px; }
+                    .details-section { flex: 1; min-width: 300px; }
+                    .details-section h2 { color: #555; margin-bottom: 20px; font-size: 1.8em; }
+                    .detail-item { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed #eee; }
+                    .detail-item:last-child { border-bottom: none; }
+                    .detail-label { font-weight: bold; color: #007bff; display: block; margin-bottom: 5px; font-size: 1.1em; }
+                    .detail-value { font-size: 1.05em; line-height: 1.6; color: #444; }
+                    .description-box { background-color: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #dee2e6; margin-top: 10px; }
+
+                    .image-gallery-section { flex: 1.5; min-width: 350px; display: flex; flex-direction: column; align-items: center; }
+                    .image-gallery-section h2 { color: #555; margin-bottom: 20px; font-size: 1.8em; }
+                    .image-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; width: 100%; }
+                    .image-gallery img {
+                        width: 100%;
+                        height: 180px;
+                        object-fit: cover; /* Ensures image covers the area, might crop */
+                        border: 3px solid #ddd;
+                        border-radius: 8px;
+                        box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+                        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, z-index 0s 0.3s; /* Smooth transitions, z-index delayed to prevent flicker */
+                        cursor: zoom-in; /* Cursor indicates zoom functionality */
+                    }
+                    .image-gallery img:hover {
+                        transform: scale(2); /* Zooms the image to 2 times its size */
+                        box-shadow: 0 15px 30px rgba(0,0,0,0.2); /* Enhanced shadow on hover */
+                        z-index: 10; /* Brings the hovered image to the front */
+                    }
+
+                    @media (max-width: 768px) {
+                        .product-container { flex-direction: column; padding: 20px; }
+                        .image-gallery { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+                        .image-gallery img {
+                            height: auto; /* Adjust height for smaller screens, maintain aspect ratio */
+                        }
+                        .image-gallery img:hover {
+                            transform: scale(1.5); /* Slightly less zoom on smaller screens for better fit */
+                        }
+                    }
+                </style>
+            </head>
+            <body>
+                <div class='product-container'>
+                    <div class='product-header'>Product Details</div>
+
+                    <div class='details-section'>
+                        <h2>Product Information</h2>
+                        <div class='detail-item'>
+                            <span class='detail-label'>Product ID:</span>
+                            <span class='detail-value'>1750751162</span>
+                        </div>
+                        <div class='detail-item'>
+                            <span class='detail-label'>Product Name:</span>
+                            <span class='detail-value'>Laptop</span>
+                        </div>
+                        <div class='detail-item'>
+                            <span class='detail-label'>Price:</span>
+                            <span class='detail-value'>Rs. 1,200.00</span>
+                        </div>
+                        <div class='detail-item'>
+                            <span class='detail-label'>Description:</span>
+                            <div class='detail-value description-box'>Laptop</div>
+                        </div>
+                    </div>
+
+                    <div class='image-gallery-section'>
+                        <h2>Product Images</h2>
+                        <div class='image-gallery'><p style='width: 100%; text-align: center; color: #888;'>No images available for this product.</p>
+                        </div>
+                    </div>
+                </div>
+            </body>
+            </html>
+        

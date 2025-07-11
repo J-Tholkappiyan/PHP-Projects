@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mahendhra Textiles - Family Shopping</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #FF6B35;
+            --secondary-color: #004E89;
+            --dark-color: #292929;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .navbar {
+            background-color: white !important;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary-color) !important;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .navbar-brand img.rounded-circle {
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand:hover img.rounded-circle {
+            transform: rotate(15deg);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand span {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand:hover span {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            color: var(--dark-color) !important;
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 10px 25px;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            background-color: #e05a2b;
+            border-color: #e05a2b;
+        }
+        
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Photos/billcounter.jpg') no-repeat center center/cover;
+            display: flex;
+            background-position: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            backdrop-filter: blur(5px);
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #FF8C42, #FF6B35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .about-img:hover {
+            transform: scale(1.02);
+        }
+        
+        .product-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .product-img {
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+        
+        .price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .gallery-item {
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .gallery-img {
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s;
+            width: 100%;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .contact-info {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            height: 100%;
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-section {
+                height: 80vh;
+            }
+            
+            .product-img {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .product-img {
+                height: 200px;
+            }
+            
+            .gallery-img {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <img src="Photos/logo.jpg" alt="Mahendhra Textiles Logo" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
+                <span class="ms-2">Mahendhra Textiles</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span      >
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container text-center text-white hero-content">
+            <h1 class="hero-title">Welcome to Mahendhra Textiles</h1>
+            <p class="lead mb-4 fs-4">Your one-stop destination for quality textiles and family shopping needs</p>
+            <a href="#products" class="btn btn-primary btn-lg">Explore Collections</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 my-5">
+        <div class="container">
+            <h2 class="text-center section-title">About Our Store</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="Photos/entry.jpg" alt="About Mahendhra Textiles" class="img-fluid about-img">
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Our Story Since 2023</h3>
+                    <p>Mahendhra Textiles and Family Shopping has been serving the Pattukkottai community for over 2 years. Established in 2023, we take pride in offering the finest quality textiles, clothing, and household essentials at competitive prices.</p>
+                    <p>Our spacious showroom at GG Tower, Chinniah Street, Mainckam Colony houses one of the largest collections in the region, with over 10,000 products in stock at any given time. We specialize in:</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-primary me-2"></i> Traditional silk and cotton sarees</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Men's formal and casual wear</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Children's clothing and school uniforms</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Home textiles and furnishings</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Wedding and festival collections</li>
+                    </ul>
+                    <p>Our team of 15 experienced staff members is dedicated to helping you find exactly what you need with personalized service and expert advice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+<section id="products" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center section-title mb-4">Our Products</h2>
+        <div class="row g-3">
+            <!-- Product 1 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <div class="product-img-container">
+                        <img src="Photos/silk sarees.webp" class="img-fluid product-img" alt="Silk Sarees">
+                    </div>
+                    <div class="card-body p-3">
+                        <h5 class="card-title fs-6 mb-1">Premium Silk Sarees</h5>
+                        <p class="card-text text-muted small mb-2">Traditional handwoven silk sarees with zari work.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price fw-bold text-primary">₹2,500 - ₹25,000</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <div class="product-img-container">
+                        <img src="Photos/cottonsilksarees.webp" class="img-fluid product-img" alt="Cotton Sarees">
+                    </div>
+                    <div class="card-body p-3">
+                        <h5 class="card-title fs-6 mb-1">Cotton Sarees</h5>
+                        <p class="card-text text-muted small mb-2">Comfortable daily wear sarees in various designs.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price fw-bold text-primary">₹800 - ₹3,500</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <div class="product-img-container">
+                        <img src="Photos/gents.jpg" class="img-fluid product-img" alt="Men's Shirts">
+                    </div>
+                    <div class="card-body p-3">
+                        <h5 class="card-title fs-6 mb-1">Men's Formal Shirts</h5>
+                        <p class="card-text text-muted small mb-2">Premium quality formal shirts for office wear.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price fw-bold text-primary">₹500 - ₹2,500</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <div class="product-img-container">
+                        <img src="Photos/kids.jpg" class="img-fluid product-img" alt="Kids Wear">
+                    </div>
+                    <div class="card-body p-3">
+                        <h5 class="card-title fs-6 mb-1">Kids Clothing</h5>
+                        <p class="card-text text-muted small mb-2">Colorful and comfortable clothes for children.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price fw-bold text-primary">₹300 - ₹1,500</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <div class="product-img-container">
+                        <img src="Photos/chudi.jpg" class="img-fluid product-img" alt="Traditional Chudithar">
+                    </div>
+                    <div class="card-body p-3">
+                        <h5 class="card-title fs-6 mb-1">Kancheevaram Chudithar</h5>
+                        <p class="card-text text-muted small mb-2">Elegant silk chudithar with traditional motifs.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price fw-bold text-primary">₹1,500 - ₹4,500</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <div class="product-img-container">
+                        <img src="Photos/vesti.jpg" class="img-fluid product-img" alt="Vesti Shirts">
+                    </div>
+                    <div class="card-body p-3">
+                        <h5 class="card-title fs-6 mb-1">Traditional Vesti Shirts</h5>
+                        <p class="card-text text-muted small mb-2">Premium cotton shirts for veshti wear.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price fw-bold text-primary">₹800 - ₹2,500</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <div class="product-img-container">
+                        <img src="Photos/New Collections Arrived.webp" class="img-fluid product-img" alt="Silk Cotton Sarees">
+                    </div>
+                    <div class="card-body p-3">
+                        <h5 class="card-title fs-6 mb-1">Madurai Silk-Cotton Sarees</h5>
+                        <p class="card-text text-muted small mb-2">Lightweight sarees with silk borders.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price fw-bold text-primary">₹1,200 - ₹5,000</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <div class="product-img-container">
+                        <img src="Photos/kc.jpg" class="img-fluid product-img" alt="Traditional Shirts">
+                    </div>
+                    <div class="card-body p-3">
+                        <h5 class="card-title fs-6 mb-1">Kerala Cotton Shirts</h5>
+                        <p class="card-text text-muted small mb-2">Comfortable traditional shirts for men.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price fw-bold text-primary">₹600 - ₹2,000</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="#" class="btn btn-primary px-4 py-2">View All Products</a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .product-img-container {
+        height: 180px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8f9fa;
+    }
+    
+    .product-img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+    
+    .product-card:hover .product-img {
+        transform: scale(1.05);
+    }
+    
+    .card-title {
+        min-height: 2.5rem;
+    }
+    
+    @media (max-width: 576px) {
+        .product-img-container {
+            height: 120px;
+        }
+        .card-title {
+            font-size: 0.9rem !important;
+        }
+        .card-text {
+            font-size: 0.8rem !important;
+        }
+    }
+</style>
+
+ <!-- Gallery Carousel Section - Multi-item -->
+<section id="gallery" class="py-5">
+    <div class="container">
+        <h2 class="text-center section-title">Our Gallery</h2>
+        
+        <div id="multiGalleryCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="Photos/g1.jpg" class="d-block w-100" alt="Store Interior">
+                            <div class="text-center mt-2"><h5>Store Interior</h5></div>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="Photos/g2.jpg" class="d-block w-100" alt="Saree Collection">
+                            <div class="text-center mt-2"><h5>Saree Collection</h5></div>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="Photos/s1.jpg" class="d-block w-100" alt="Silk Sarees">
+                            <div class="text-center mt-2"><h5>Silk Sarees</h5></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="Photos/s2.jpg" class="d-block w-100" alt="Men's Section">
+                            <div class="text-center mt-2"><h5>Men's Section</h5></div>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="Photos/s3.jpg" class="d-block w-100" alt="Kids Section">
+                            <div class="text-center mt-2"><h5>Kids Section</h5></div>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="Photos/lookview.jpg" class="d-block w-100" alt="Home Textiles">
+                            <div class="text-center mt-2"><h5>Home Textiles</h5></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#multiGalleryCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#multiGalleryCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</section>
+    
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center section-title">Contact Us</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="contact-info">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <h4>Our Location</h4>
+                            <p>GG Tower, Chinniah Street,<br>Mainckam Colony, Pattukkottai,<br>Thanjavur, Tamil Nadu 614602</p>
+                        </div>
+                        <div class="text-center mb-4">
+                            <i class="fas fa-phone-alt contact-icon"></i>
+                            <h4>Phone</h4>
+                            <p>+91 9543214477<br>+91 9876543210</p>
+                        </div>
+                        <div class="text-center">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <h4>Email</h4>
+                            <p>mahendhratextiles@gmail.com<br>info@mahendhratextiles.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <h4 class="mb-4">Send Us a Message</h4>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="tel" class="form-control" placeholder="Your Phone">
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Footer -->
+<footer class="footer position-relative">
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="btn btn-primary rounded-circle position-fixed" style="bottom: 30px; right: 30px; width: 50px; height: 50px; display: none; z-index: 99;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="d-flex align-items-center mb-3">
+                    <img src="Photos/logo.jpg" alt="Mahendhra Textiles Logo" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover; border: 2px solid white;">
+                    <a href="#" class="footer-logo">Mahendhra Textiles</a>
+                </div>
+                <p>Your trusted family textile store since 1995, offering quality products with exceptional service at GG Tower, Chinniah Street, Pattukkottai.</p>
+                <div class="mt-4">
+                    <h5 class="text-white mb-3">Connect With Us</h5>
+                    <a href="#" class="social-icon me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon me-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon me-2"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="mb-4">Our Collections</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="fas fa-chevron-right text-primary me-2"></i><a href="#" class="text-white text-decoration-none">Silk Sarees</a></li>
+                    <li class="mb-2"><i class="fas fa-chevron-right text-primary me-2"></i><a href="#" class="text-white text-decoration-none">Cotton Wear</a></li>
+                    <li class="mb-2"><i class="fas fa-chevron-right text-primary me-2"></i><a href="#" class="text-white text-decoration-none">Bridal Collections</a></li>
+                    <li class="mb-2"><i class="fas fa-chevron-right text-primary me-2"></i><a href="#" class="text-white text-decoration-none">Kids Fashion</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <h5 class="mb-4">Store Video</h5>
+                <div class="ratio ratio-16x9" style="max-width: 250px;">
+                    <video controls poster="Photos/video.mp4" style="border-radius: 8px;">
+                        <source src="Photos/video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+        
+        <hr class="mt-4 mb-3" style="border-color: rgba(255,255,255,0.1);">
+        
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="mb-0">&copy; 2025 Mahendhra Textiles. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    /* Scroll to Top Button Styles */
+    #scrollToTop {
+        background-color: var(--primary-color);
+        border: none;
+        transition: all 0.3s ease;
+    }
+    
+    #scrollToTop:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Footer Link Hover Effects */
+    .footer a.text-white:hover {
+        color: var(--primary-color) !important;
+        padding-left: 5px;
+        transition: all 0.3s ease;
+    }
+    
+    /* Social Icons */
+    .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+    }
+    
+    /* Video Player Styling */
+    video {
+        background: #000;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<script>
+    // Scroll to Top Button
+    window.addEventListener('scroll', function() {
+        var scrollToTopButton = document.getElementById('scrollToTop');
+        if (window.pageYOffset > 300) {
+            scrollToTopButton.style.display = 'flex';
+            scrollToTopButton.style.alignItems = 'center';
+            scrollToTopButton.style.justifyContent = 'center';
+        } else {
+            scrollToTopButton.style.display = 'none';
+        }
+    });
+    
+    document.getElementById('scrollToTop').addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
+<style>
+    /* Scroll to Top Button Styles */
+    #scrollToTop {
+        background-color: var(--primary-color);
+        border: none;
+        transition: all 0.3s ease;
+    }
+    
+    #scrollToTop:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Footer Link Hover Effects */
+    .footer a.text-white:hover {
+        color: var(--primary-color) !important;
+        padding-left: 5px;
+        transition: all 0.3s ease;
+    }
+    
+    /* Social Icons */
+    .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+    }
+</style>
+
+<script>
+    // Scroll to Top Button
+    window.addEventListener('scroll', function() {
+        var scrollToTopButton = document.getElementById('scrollToTop');
+        if (window.pageYOffset > 300) {
+            scrollToTopButton.style.display = 'flex';
+            scrollToTopButton.style.alignItems = 'center';
+            scrollToTopButton.style.justifyContent = 'center';
+        } else {
+            scrollToTopButton.style.display = 'none';
+        }
+    });
+    
+    document.getElementById('scrollToTop').addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '10px 0';
+                navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.padding = '15px 0';
+                navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>

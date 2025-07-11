@@ -1,0 +1,56 @@
+[
+    {
+        "id": "prod_6863810977421",
+        "product_name": "Laptop",
+        "price": 123043,
+        "description": "sadfas",
+        "images": [
+            {
+                "unique_id": "686384fa15bf55.69202205.png",
+                "original_name": "2.png",
+                "file_hash": "38d9b3f3c0abbdaba8df0342f09b02e2"
+            },
+            {
+                "unique_id": "68638eb33b5fd1.45881403.jpg",
+                "original_name": "2.jpg",
+                "file_hash": "24142d3c88d39e64b22f9237005b4aca"
+            },
+            {
+                "unique_id": "6863905cdee4a9.41748966.jpg",
+                "original_name": "1.jpg",
+                "file_hash": "d038c33206196f0189041d15fc140694"
+            }
+        ]
+    },
+    {
+        "id": "prod_68639263eb631",
+        "product_name": "Laptop",
+        "price": 12341,
+        "description": "Nice",
+        "images": [
+            "img_68639263eab332.20679562.jpg",
+            "img_68639263eab7a6.80918415.png",
+            "img_68639263eab821.11816215.jpg"
+        ]
+    },
+    {
+        "id": "prod_68639303c44d8",
+        "product_name": "Tv",
+        "price": 32432,
+        "description": "asdfasd",
+        "images": [
+            "img_68639303c3afe7.58237276.jpg",
+            "img_68639303c3b0d8.36784541.png"
+        ]
+    },
+    {
+        "id": "prod_6863eb3a77ec9",
+        "product_name": "Neet Seat",
+        "price": 1000000,
+        "description": "asfsd",
+        "images": [
+            "img_6863eb3a775393.57756023.jpg",
+            "img_6863eb3a775691.22976190.png"
+        ]
+    }
+]

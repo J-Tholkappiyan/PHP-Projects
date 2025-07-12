@@ -1,0 +1,524 @@
+/* General Body and Layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Styles for the input form page */
+.main-content-wrapper {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    max-width: 900px; /* Adjusted for single column form */
+    justify-content: center;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 400px;
+}
+
+.form-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+fieldset {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #fdfdff;
+}
+
+legend {
+    font-weight: bold;
+    color: #0056b3;
+    padding: 0 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.vitals-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* Font Controls for Doctor and Patient Names */
+.form-group.with-controls {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.with-controls label {
+    margin-bottom: 5px;
+}
+
+.font-control-group {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+    align-items: center;
+}
+
+.font-control-group button {
+    padding: 5px 10px;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-top: 5px;
+    transform: scale(1.2);
+}
+
+.remove-medicine-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.remove-medicine-btn:hover {
+    background-color: #c82333;
+}
+
+#addMedicineRow {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 15px;
+    transition: background-color 0.2s;
+}
+
+#addMedicineRow:hover {
+    background-color: #218838;
+}
+
+/* Form Actions */
+.form-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.form-actions button {
+    padding: 12px 25px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+#generatePrescriptionBtn {
+    background-color: #007bff;
+    color: white;
+}
+
+#generatePrescriptionBtn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Styles for the preview page */
+.preview-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px; /* Adjust as needed */
+}
+
+#prescriptionPreview {
+    width: 195mm;
+    height: 282mm;
+    padding: 10mm; /* Slightly less padding */
+    border: none; /* Remove border */
+    box-shadow: none; /* Remove shadow */
+    background-color: #fff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Avoid stretching */
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden; /* Prevent scrollbars or content overflow */
+}
+
+
+/* Doctor Header */
+.doctor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #333;
+    position: relative;
+}
+
+.doctor-details-left,
+.doctor-details-right {
+    flex: 1;
+}
+
+.doctor-details-left {
+    padding-right: 15px;
+}
+
+.doctor-details-right {
+    padding-left: 15px;
+    text-align: right;
+}
+
+.doctor-name {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.qualifications,
+.specialist,
+.reg-no,
+.designation {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 3px;
+}
+
+.doctor-header-vertical-line {
+    width: 3px; /* Increased thickness for boldness */
+    background-color: #000; /* Changed to black for more boldness */
+    position: absolute;
+    height: calc(100% - 20px); /* Adjust height as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+}
+
+/* Patient Info */
+.patient-info {
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.patient-info .patient-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1em;
+    color: #333;
+}
+
+.patient-info span {
+    font-weight: normal;
+}
+
+.patient-info span span {
+    font-weight: bold;
+}
+
+/* Vitals */
+.vitals {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: #444;
+}
+
+.vitals div {
+    flex: 1;
+    min-width: 100px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    white-space: nowrap; /* Prevent vitals from wrapping */
+}
+
+.vitals span {
+    font-weight: bold;
+    color: #222;
+}
+
+.vitals-footer-line {
+    border-bottom: 3px solid #000; /* Increased thickness and changed to solid black */
+    margin-bottom: 20px;
+}
+
+/* Prescription Body Wrapper (Left Side and Rx) */
+.prescription-body-wrapper {
+    display: flex;
+    flex: 1; /* Allows it to take up available space */
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.left-side-section {
+    width: 30%; /* Adjust width as needed */
+    padding-right: 20px;
+    box-sizing: border-box;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.left-side-item {
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 10px; /* Space for the horizontal line */
+}
+
+.horizontal-line-marker {
+    border-bottom: 2px solid #000; /* Increased thickness and changed to solid black */
+    width: 80%; /* Adjust length as needed */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.vertical-line-left {
+    width: 3px; /* Increased thickness for boldness */
+    background-color: #000; /* Changed to black for more boldness */
+    position: absolute;
+    height: 100%;
+    left: 30%; /* Position it at the end of the left section */
+    transform: translateX(-1px); /* Center the line */
+}
+
+.prescription-content {
+    flex: 1;
+    padding-left: 30px; /* Space from the vertical line */
+    box-sizing: border-box;
+}
+
+.prescription-content h2 {
+    font-size: 2em;
+    color: #007bff;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Medicine Table */
+.medicine-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.medicine-table th,
+.medicine-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.medicine-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+    font-size: 0.9em;
+}
+
+.medicine-table td {
+    font-size: 0.85em;
+    color: #444;
+}
+
+.medicine-table td:first-child {
+    text-align: left;
+    font-weight: bold;
+    color: #000;
+}
+
+.rotated-text {
+    display: inline-block;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+    position: relative;
+    left: -5px; /* Adjust as needed for alignment */
+}
+
+
+/* Footer */
+.footer-content {
+    text-align: center;
+    padding-top: 15px;
+    margin-top: auto; /* Pushes the footer to the bottom */
+    position: relative;
+}
+
+.medical-name-container {
+    display: flex;
+    justify-content: center; /* Center the box horizontally */
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.medical-name-box {
+    padding: 5px 15px; /* Added vertical padding for the box effect */
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #007bff;
+    white-space: nowrap; /* Prevent wrapping */
+    border: 2px solid #000; /* Full 2px solid black border around the box */
+    border-radius: 5px; /* Slightly rounded corners for the box */
+    background-color: #fff; /* Ensure background is white inside the box */
+    display: inline-block; /* Essential to make padding/border work correctly with content width */
+}
+
+.footer-details {
+    font-size: 0.8em;
+    color: #666;
+    margin-bottom: 3px;
+}
+
+.footer-line {
+    border-top: 3px solid #000; /* Increased thickness and changed to solid black */
+    margin-top: 15px;
+    padding-top: 5px;
+}
+
+/* Print Specific Styles */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        background: none;
+    }
+
+    .preview-page-wrapper {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        position: static;
+        top: auto;
+        width: 100%; /* Ensure it takes full width for printing */
+        max-width: none;
+        min-width: unset;
+    }
+
+    .prescription-preview {
+        width: 210mm;
+        height: 297mm;
+        margin: 0 auto;
+        border: none;
+        box-shadow: none;
+    }
+
+    .preview-actions {
+        display: none; /* Hide buttons when printing */
+    }
+}
+
+/* Buttons for preview page */
+
+#printPrescriptionBtn {
+    background-color: #6c757d;
+    color: white;
+}
+
+#printPrescriptionBtn:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+#downloadPdfBtn {
+    background-color: #17a2b8;
+    color: white;
+}
+
+#downloadPdfBtn:hover {
+    background-color: #138496;
+    transform: translateY(-2px);
+}
+
+#backToFormBtn {
+    background-color: #007bff;
+    color: white;
+}
+
+#backToFormBtn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Buttons for preview page */
+.preview-actions {
+    margin-top: 20px;
+    text-align: center; /* This will center the buttons horizontally within the column */
+    display: flex; /* Ensure it's a flex container */
+    flex-direction: column; /* This will stack the buttons vertically */
+    gap: 10px; /* Adds space between the buttons */
+    align-items: center; /* Centers the buttons horizontally if their container is wider */
+}
+
+/* The individual button styles remain the same */
+.preview-actions button {
+    padding: 12px 25px;
+    /* margin: 0 10px;  Remove or adjust this margin as 'gap' handles spacing now */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s, transform 0.2s;
+    width: fit-content; /* Make buttons fit their content to allow centering within column */
+}

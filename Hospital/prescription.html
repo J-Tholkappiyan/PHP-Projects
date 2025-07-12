@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription - Preview</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <div class="preview-page-wrapper">
+        <div id="prescriptionPreview" class="prescription-preview">
+
+            <div class="doctor-header">
+                <div class="doctor-details-left">
+                    <div class="doctor-name" id="previewDoctorName"></div>
+                    <div class="qualifications" id="previewQualifications"></div>
+                    <div class="specialist" id="previewSpecialist"></div>
+                </div>
+                <div class="doctor-header-vertical-line"></div>
+                <div class="doctor-details-right">
+                    <div class="reg-no" id="previewRegNo"></div>
+                    <div class="designation" id="previewDesignation"></div>
+                </div>
+            </div>
+
+            <div class="patient-info">
+                <div class="patient-row">
+                    <span>Patient Name: <span id="previewPatientName"></span></span>
+                    <span>Age/Sex: <span id="previewAgeSex"></span></span>
+                    <span>Date: <span id="previewDate"></span></span>
+                </div>
+            </div>
+
+            <div class="vitals">
+                <div class="vitals-bp">BP: <span id="previewBp"></span></div>
+                <div class="vitals-pr">PR: <span id="previewPr"></span></div>
+                <div class="vitals-temp">Temp: <span id="previewTemp"></span></div>
+                <div class="vitals-wt">Wt: <span id="previewWt"></span></div>
+                <div class="vitals-spo2">SpO2: <span id="previewSpo2"></span></div>
+            </div>
+            <div class="vitals-footer-line"></div>
+
+            <div class="prescription-body-wrapper">
+                <div class="left-side-section">
+                    <div class="left-side-item">
+                        C/O: <span id="previewCo"></span>
+                        <div class="horizontal-line-marker"></div>
+                    </div>
+                    <div class="left-side-item">
+                        H/O: <span id="previewHo"></span>
+                        <div class="horizontal-line-marker"></div>
+                    </div>
+                    <div class="left-side-item">
+                        O/E: <span id="previewOe"></span>
+                        <div class="horizontal-line-marker"></div>
+                    </div>
+                </div>
+                <div class="vertical-line-left"></div>
+                <div class="prescription-content">
+                    <!-- <h2>Rx</h2> -->
+                    <table class="medicine-table">
+                        <thead>
+                            <tr>
+                                <th>Medicines</th>
+                                <th>Morning</th>
+                                <th>Afternoon</th>
+                                <th>Evening</th>
+                                <th>Night</th>
+                                <th>Days</th>
+                            </tr>
+                        </thead>
+                        <tbody id="medicineTableBody">
+                            </tbody>
+                    </table>
+                    <p>Additional Notes: <span id="previewAdditionalNotes"></span></p>
+                </div>
+            </div>
+
+            <div class="footer-content">
+                <div class="medical-name-container">
+                    <div class="medical-name-box" id="previewMedicalNameBox"></div>
+                </div>
+                <div class="footer-details" id="previewAddressDetails"></div>
+                <div class="footer-details" id="previewPhoneDetails"></div>
+                <div class="footer-line"></div>
+            </div>
+        </div> 
+    </div>
+
+            <div class="preview-actions">
+                    <button type="button" id="printPrescriptionBtn">Print Prescription</button>
+                    <button type="button" id="downloadPdfBtn">Download PDF</button>
+                    <button type="button" id="backToFormBtn">Back to Form</button>
+            </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

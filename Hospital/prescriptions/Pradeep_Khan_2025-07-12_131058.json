@@ -1,0 +1,44 @@
+{
+    "doctorName": "Saravana Abishek G",
+    "qualifications": "MBBS,MD",
+    "specialist": "Cardio",
+    "regNo": "02",
+    "designation": "Doctor",
+    "patientName": "Pradeep Khan",
+    "ageSex": "23\/M",
+    "date": "2025-07-12",
+    "bp": "123",
+    "pr": "34",
+    "temp": "78",
+    "wt": "66",
+    "spo2": "45",
+    "co": "Nothing",
+    "ho": "Nothing",
+    "oe": "Nothing",
+    "additionalNotes": "Nothing",
+    "medicalName": "Manju Medicals",
+    "addressDetails": "Muthupillai Mandapam",
+    "phoneDetails": "9894292498",
+    "medicines": [
+        {
+            "name": "Dolo 650",
+            "m": true,
+            "a": true,
+            "e": false,
+            "n": true,
+            "days": "5"
+        },
+        {
+            "name": "Sleeping Pills",
+            "m": true,
+            "a": true,
+            "e": false,
+            "n": true,
+            "days": "7"
+        }
+    ],
+    "doctorNameFontSize": 1.7000000000000002,
+    "doctorNameColor": "#ff0000",
+    "patientNameFontSize": 1,
+    "patientNameColor": "#000000"
+}

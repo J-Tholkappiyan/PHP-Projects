@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LyfeBridge Hospital - Login</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0a4da3;
+            --secondary-color: #083b7d;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .login-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .login-header h2 {
+            margin: 0;
+            font-weight: 700;
+        }
+        
+        .login-body {
+            padding: 30px;
+        }
+        
+        .form-control {
+            height: 45px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .btn-login {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            height: 45px;
+            border-radius: 5px;
+            font-weight: 500;
+            width: 100%;
+        }
+        
+        .btn-login:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .captcha-text {
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 24px;
+            letter-spacing: 3px;
+            padding: 5px 15px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            margin-right: 10px;
+            user-select: none;
+        }
+        
+        .refresh-captcha {
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .hospital-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <img src="images/logo.webp" alt="Hospital Logo" class="hospital-logo rounded-circle">
+            <h2>LyfeBridge Hospital</h2>
+            <p>Advanced Healthcare With Compassion</p>
+        </div>
+        <div class="login-body">
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="captcha" class="form-label">CAPTCHA Verification</label>
+                    <div class="captcha-container">
+                        <div id="captchaText" class="captcha-text"></div>
+                        <i class="fas fa-sync-alt refresh-captcha" id="refreshCaptcha"></i>
+                    </div>
+                    <input type="text" class="form-control" id="captchaInput" placeholder="Enter CAPTCHA" required>
+                    <div id="captchaError" class="error-message">CAPTCHA does not match</div>
+                </div>
+                
+                <div id="loginError" class="alert alert-danger" style="display: none;"></div>
+                
+                <button type="submit" class="btn btn-login">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    
+    <script>
+        // Generate random CAPTCHA
+        function generateCaptcha() {
+            const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()";
+            let captcha = "";
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return captcha;
+        }
+        
+        // Initialize CAPTCHA
+        let currentCaptcha = generateCaptcha();
+        document.getElementById('captchaText').textContent = currentCaptcha;
+        
+        // Refresh CAPTCHA
+        document.getElementById('refreshCaptcha').addEventListener('click', function() {
+            currentCaptcha = generateCaptcha();
+            document.getElementById('captchaText').textContent = currentCaptcha;
+            document.getElementById('captchaInput').value = "";
+            document.getElementById('captchaError').style.display = "none";
+        });
+        
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get input values
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const captchaInput = document.getElementById('captchaInput').value;
+            const errorElement = document.getElementById('loginError');
+            
+            // Hide previous errors
+            errorElement.style.display = "none";
+            document.getElementById('captchaError').style.display = "none";
+            
+            // Validate CAPTCHA first
+            if (captchaInput !== currentCaptcha) {
+                document.getElementById('captchaError').style.display = "block";
+                return;
+            }
+            
+            // Validate credentials
+            const validCredentials = [
+                { user: "doctorlb", pass: "doctorlb" },
+                { user: "adminlb", pass: "adminlb" }
+            ];
+            
+            const isValid = validCredentials.some(cred => 
+                cred.user === username && cred.pass === password
+            );
+            
+            if (isValid) {
+                // Successful login - redirect to view.html
+                window.location.href = "view.html";
+            } else {
+                // Show error message
+                errorElement.textContent = "Invalid username or password";
+                errorElement.style.display = "block";
+                
+                // Generate new CAPTCHA
+                currentCaptcha = generateCaptcha();
+                document.getElementById('captchaText').textContent = currentCaptcha;
+                document.getElementById('captchaInput').value = "";
+            }
+        });
+    </script>
+</body>
+</html>
